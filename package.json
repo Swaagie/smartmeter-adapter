@@ -1,0 +1,29 @@
+{
+  "name": "smartmeter-adapter",
+  "version": "1.0.0",
+  "description": "Smartmeter adapter add-on for Mozilla IoT Gateway ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swaagie/smartmeter-adapter.git"
+  },
+  "keywords": [
+    "smart",
+    "meter",
+    "iot",
+    "mozilla",
+    "adapter"
+  ],
+  "author": "Martijn Swaagman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Swaagie/smartmeter-adapter/issues"
+  },
+  "homepage": "https://github.com/Swaagie/smartmeter-adapter#readme",
+  "dependencies": {
+    "usb": "^1.3.3"
+  }
+}
