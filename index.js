@@ -1,8 +1,15 @@
 'use strict';
 
-const usb = require('usb');
-const devices = usb.getDeviceList();
+const Reader = require('./reader');
+const reader = new Reader({
+  port: {
+    target: '/dev/ttyUSB0',
+    options: {
+      baudRate: 115200
+    }
+  }
+});
 
-const result = devices[0].open();
-
-console.log(result);
+reader.open()
+  .on('error', console.log)
+  .on('signal', console.log);
