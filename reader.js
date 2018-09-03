@@ -4,7 +4,7 @@ const EventEmitter = require('eventemitter3')
 const SerialPort = require('serialport');
 
 class Reader {
-  constructor({ events, port, signature = /\d-\d:/ }) {
+  constructor({ events, port, signature = /![0-9A-F]{4}/ }) {
     const { target, options } = port;
 
     this._open = false;
@@ -34,20 +34,17 @@ class Reader {
   //
   concat(signal = []) {
     return data => {
-      data = data.toString('utf-8');
+      signal.push(data.toString('utf-8'));
 
       //
-      // Ignore transmitted data that is not useful.
+      // End of message, parse the concatenated signal.
       //
-      if (signature.test(data)) signal.push(data);
-
-      //
-      // End of message, parse.
-      //
-      if (data.charAt(0) === '!') {
-        this._events.emit('signal', signal);
+      if (~data.indexOf('!')) {
+        this._events.emit('signal', signal.join('').split('\r\n').filter(d => /\d-\d:/.test(d)));
         signal = [];
       }
     }
   }
 }
+
+module.exports = Reader;
