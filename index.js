@@ -1,6 +1,9 @@
 'use strict';
 
 const Reader = require('./reader');
+const Parser = require('./parser');
+
+const parser = new Parser();
 const reader = new Reader({
   port: {
     target: '/dev/ttyUSB0',
@@ -11,5 +14,5 @@ const reader = new Reader({
 });
 
 reader.open()
-  .on('error', console.log)
-  .on('signal', console.log);
+  .on('error', console.error)
+  .on('signal', parser.parse);
