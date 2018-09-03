@@ -1,7 +1,7 @@
 const store = require('./store');
 
 class Parser {
-  constructor({ db }) {
+  constructor({ db } = {}) {
     this._store = store(db);
   }
 
