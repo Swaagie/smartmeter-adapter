@@ -15,4 +15,4 @@ const reader = new Reader({
 
 reader.open()
   .on('error', console.error)
-  .on('signal', parser.parse);
+  .on('signal', parser.parse.bind(parser));
