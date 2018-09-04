@@ -1,9 +1,9 @@
-const store = require('./store');
+'use strict';
 
 class Parser {
-  constructor({ identifier = /\d-\d:/, db } = {}) {
+  constructor({ events, identifier = /\d-\d:/ } = {}) {
+    this._events = events;
     this._identifier = identifier;
-    this._store = store(db);
   }
 
   extract(signal, n) {
@@ -16,8 +16,7 @@ class Parser {
   parse(signal) {
     signal = signal.split('\r\n').filter(d => this._identifier.test(d)).map(d => d.trim());
 
-    const result = {
-      timestamp: Date.now(),
+    this._events.emit('store', Date.now(), {
       lowTariffReceived: this.extract(signal, 3),
       highTariffReceived: this.extract(signal, 4),
       lowTariffDelivered: this.extract(signal, 5),
@@ -25,9 +24,7 @@ class Parser {
       consumption: this.extract(signal, 8),
       production: this.extract(signal, 9),
       gasConsumption: this.extract(signal, 32)
-    }
-
-    console.log(result);
+    });
   }
 }
 

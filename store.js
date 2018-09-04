@@ -1,3 +1,5 @@
+'use strict';
+
 const leveldown = require('leveldown');
 const levelup = require('levelup');
 

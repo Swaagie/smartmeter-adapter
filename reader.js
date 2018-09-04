@@ -1,6 +1,5 @@
 'use strict';
 
-const EventEmitter = require('eventemitter3')
 const SerialPort = require('serialport');
 
 class Reader {
@@ -9,7 +8,7 @@ class Reader {
 
     this._open = false;
     this._signature = signature;
-    this._events = new EventEmitter(events);
+    this._events = events;
     this._port = new SerialPort(target, {
       ...options,
       autoOpen: false
@@ -25,8 +24,6 @@ class Reader {
       this._open = true;
       this._port.on('data', this.concat());
     });
-
-    return this._events;
   }
 
   //
