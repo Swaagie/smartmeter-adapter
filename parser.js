@@ -7,7 +7,7 @@ class Parser {
   }
 
   extract(signal, n) {
-    const unit = singal[n];
+    const unit = signal[n];
 
     if (!unit) return;
     return parseFloat(substring(unit.lastIndexOf('(') + 1, unit.lastIndexOf(')')));
@@ -26,7 +26,7 @@ class Parser {
       production: this.extract(signal, 9),
       gasConsumption: this.extract(signal, 32)
     }
-    
+
     console.log(result);
   }
 }
