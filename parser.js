@@ -14,7 +14,7 @@ class Parser {
   }
 
   parse(signal) {
-    signal = signal.split('\r\n').filter(d => this._identifier.test(d));
+    signal = signal.split('\r\n').filter(d => this._identifier.test(d)).map(d => d.trim());
 
     const result = {
       timestamp: Date.now(),

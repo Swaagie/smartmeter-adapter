@@ -34,7 +34,7 @@ class Reader {
   //
   concat(signal = []) {
     return data => {
-      signal.push(data.toString('utf-8').trim());
+      signal.push(data.toString('utf-8'));
 
       //
       // End of message, parse the concatenated signal.
