@@ -10,7 +10,7 @@ class Parser {
     const unit = signal[n];
 
     if (!unit) return;
-    return parseFloat(substring(unit.lastIndexOf('(') + 1, unit.lastIndexOf(')')));
+    return parseFloat(unit.substring(unit.lastIndexOf('(') + 1, unit.lastIndexOf(')')));
   }
 
   parse(signal) {
