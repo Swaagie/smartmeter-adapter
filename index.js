@@ -6,7 +6,7 @@ const Parser = require('./parser');
 const store = require('./store')();
 
 const events = new EventEmitter();
-const parser = new Parser(events);
+const parser = new Parser({ events });
 const reader = new Reader({
   events,
   port: {

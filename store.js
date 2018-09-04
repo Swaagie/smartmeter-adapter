@@ -8,7 +8,7 @@ let db;
 module.exports = function store({ location = './.db' } = {}) {
   if (db) return db;
 
-  db = levelup(
+  return db = levelup(
     leveldown(location)
   );
 }
