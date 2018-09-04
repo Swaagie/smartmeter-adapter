@@ -21,7 +21,7 @@ events
   .on('error', console.error)
   .on('signal', parser.parse.bind(parser))
   .on('store', function receivedData(key, data) {
-    store.put(key, data, error => this.emit('error', error));
+    store.put(key, data, error => error && this.emit('error', error));
   });
 
 reader.open();
