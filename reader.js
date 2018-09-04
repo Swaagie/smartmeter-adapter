@@ -34,13 +34,13 @@ class Reader {
   //
   concat(signal = []) {
     return data => {
-      signal.push(data.toString('utf-8'));
+      signal.push(data.toString('utf-8').trim());
 
       //
       // End of message, parse the concatenated signal.
       //
       if (~data.indexOf('!')) {
-        this._events.emit('signal', signal.join('').split('\r\n').filter(d => /\d-\d:/.test(d)));
+        this._events.emit('signal', signal.join(''));
         signal = [];
       }
     }
