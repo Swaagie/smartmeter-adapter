@@ -3,7 +3,7 @@
 const EventEmitter = require('eventemitter3');
 const Reader = require('./reader');
 const Parser = require('./parser');
-const store = require('./store');
+const store = require('./store')();
 
 const events = new EventEmitter();
 const parser = new Parser(events);
